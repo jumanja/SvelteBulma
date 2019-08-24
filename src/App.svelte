@@ -24,8 +24,7 @@
 <Bread current={state_value} />
 
 <body class="container">
-
-	{#if state_value[state_value.length - 1] == 'Home'}
+	{#if state_value[state_value.length - 1].text == 'Home'}
 	<div class="columns">
 		<div class="column">
 			<h1 class="title">Hello {usuario}!</h1>

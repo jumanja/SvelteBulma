@@ -2,10 +2,10 @@
 	export let current;
 </script>
 
-<nav class="breadcrumb is-centered has-succeeds-separator" aria-label="breadcrumbs">
+<nav class="breadcrumb is-left has-succeeds-separator" aria-label="breadcrumbs">
   <ul>
 		{#each current as crumb}
-			<li><a href="#{crumb.text}">{crumb.text}</a></li>
+			<li class="is-active">{crumb.text}</li>
 		{/each}
 </ul>
 </nav>
