@@ -10,19 +10,22 @@
 	}
 
 	let usuario = 'webmaster';
-	let state_value = [
-			{ id: 0, text: 'Home' }
-	];
+
+	// state_value via suscribe from store
+	let state_value;
 	const unsubscribe = state.subscribe(value => {
 			state_value = value;
 	});
+
 </script>
 
 <Navbar />
 
-<Bread current={state_value}/>
+<Bread current={state_value} />
 
 <body class="container">
+
+	{#if state_value[state_value.length - 1] == 'Home'}
 	<div class="columns">
 		<div class="column">
 			<h1 class="title">Hello {usuario}!</h1>
@@ -35,4 +38,5 @@
 			</button>
 		</div>
 	</div>
+	{/if}
 </body>

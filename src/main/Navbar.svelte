@@ -2,6 +2,37 @@
 	import { state } from '../store/states.js';
 	import { createEventDispatcher } from 'svelte';
 
+	function setHome(event) {
+		state.update(n => [
+				{ id: 0, text: 'Home' }
+				]
+		 );
+	}
+
+	function setDocs(event) {
+		state.update(n => [
+				{ id: 0, text: 'Home' },
+				{ id: 1, text: 'Documentation' },
+				]
+		 );
+	}
+
+	function setJobs(event) {
+		state.update(n => [
+				{ id: 0, text: 'Home' },
+				{ id: 1, text: 'Jobs' },
+				]
+		 );
+	}
+
+	function setAbout(event) {
+		state.update(n => [
+				{ id: 0, text: 'Home' },
+				{ id: 1, text: 'About' },
+				]
+		 );
+	}
+
 	function setContact(event) {
 		state.update(n => [
 				{ id: 0, text: 'Home' },
@@ -34,11 +65,13 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a href="javascript:void(0);" class="navbar-item" >
+      <a href="javascript:void(0);" class="navbar-item"
+				on:click={setHome}>
         Home
       </a>
 
-      <a href="javascript:void(0);" class="navbar-item" >
+      <a href="javascript:void(0);" class="navbar-item"
+				on:click={setDocs}>
         Documentation
       </a>
 
@@ -48,10 +81,12 @@
         </a>
 
         <div class="navbar-dropdown">
-          <a href="javascript:void(0);" class="navbar-item" >
+          <a href="javascript:void(0);" class="navbar-item"
+						on:click={setAbout}>
             About
           </a>
-          <a href="javascript:void(0);" alt="link" class="navbar-item" >
+          <a href="javascript:void(0);" alt="link" class="navbar-item"
+						on:click={setJobs}>
             Jobs
           </a>
           <a href="javascript:void(0);" alt="link" class="navbar-item"
@@ -59,7 +94,7 @@
             Contact
           </a>
           <hr class="navbar-divider">
-					<a href="#" alt="link" class="navbar-item"
+					<a href="javascript:void(0);" alt="link" class="navbar-item"
 						on:click={setReport}>
             Report an issue
           </a>
