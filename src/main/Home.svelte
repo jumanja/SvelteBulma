@@ -1,5 +1,4 @@
 <script>
-	export let current;
 	let usuario = "Webmaster";
 </script>
 

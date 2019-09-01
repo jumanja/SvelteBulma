@@ -2,6 +2,15 @@
 	import { state } from '../store/states.js';
 	import { createEventDispatcher } from 'svelte';
 
+	import Login from './Login.svelte';
+
+	let isLoginVisible = false;
+	$: loginClasses = (isLoginVisible ? 'modal is-active' : 'modal');
+
+	function toggleLoginVisible() {
+		isLoginVisible = !isLoginVisible;
+	}
+
 	function setHome(event) {
 		state.update(n => [
 				{ id: 0, text: 'Home' }
@@ -59,10 +68,16 @@
       <img alt="img" src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
     </a>
 
-    <a href="javascript:void(0);" role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
+    <a href="javascript:void(0);"
+			role="button"
+			class="navbar-burger burger"
+			aria-label="menu" aria-expanded="false"
+			data-target="navbarBasicExample"
+			on:click={toggleLoginVisible}
+			>
+			<span></span>
+			<span></span>
+			<span></span>
     </a>
   </div>
 
@@ -109,9 +124,31 @@
       <div class="navbar-item">
         <div class="buttons">
             <strong class="button is-primary" >Sign up</strong>
-            <strong class="button is-primary" >Log in</strong>
+            <strong class="button is-primary"
+							on:click={toggleLoginVisible}>Log in</strong>
         </div>
       </div>
     </div>
   </div>
 </nav>
+
+<div class="{loginClasses}">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Modal title</p>
+      <button class="delete" on:click={toggleLoginVisible} aria-label="close"></button>
+    </header>
+
+    <section class="modal-card-body">
+      <!-- Content ... -->
+			<Login/>
+
+		</section>
+
+    <footer class="modal-card-foot">
+      <button class="button is-success">Save changes</button>
+      <button class="button" on:click={toggleLoginVisible}>Cancel</button>
+    </footer>
+  </div>
+</div>
