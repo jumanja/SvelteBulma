@@ -5,6 +5,8 @@
 	import Navbar from './main/Navbar.svelte';
 	import Bread from './main/Bread.svelte';
 	import Home from './main/Home.svelte';
+	import Login from './main/Login.svelte';
+	import Signup from './main/Signup.svelte';
 
 	let usuario = 'webmaster';
 
@@ -26,7 +28,11 @@
 
 <body class="container">
 
-	{#if state_value[state_value.length - 1].text == 'Home'}
+	{#if opcion == 'Home'}
 		<Home />
 	{/if}
-</body>
+
+	{#if opcion == 'Collapsed'}
+		<Login />
+		<Signup />
+	{/if}</body>

@@ -1,27 +1,27 @@
 <script>
-	export let loginClasses = "modal";
+	export let signClasses = "modal";
 	let data = [];
 
-	let loginError = false;
-	let user = { loggedIn: false };
+	let signError = false;
+	let user = { signedUp: false };
 
-	function noLoginError() {
-		loginError = false;
+	function noSignupError() {
+		signError = false;
 	}
 
-	function showLogin() {
-		loginClasses = "modal is-active";
+	function showSignup() {
+		signClasses = "modal is-active";
 	}
 
-	function hideLogin() {
-		loginClasses = "modal";
+	function hideSignup() {
+		signClasses = "modal";
 	}
 
 	function toggle() {
-		user.loggedIn = !user.loggedIn;
+		user.signedUp = !user.signedUp;
 	}
 
-	function validateLoginForm(event) {
+	function validateSignForm(event) {
 			let textbox = event.target;
 
 			if(textbox.id == 'usuario'){
@@ -60,33 +60,33 @@
 	 }
 </script>
 
-<strong class="button is-info"
-	on:click={showLogin}>Log in</strong>
+<strong class="button is-primary"
+	on:click={showSignup}>Sign Up</strong>
 
-<div id="modalLoginDiv" class="modal {loginClasses}">
+<div id="modalSignDiv" class="modal {signClasses}">
   <div class="modal-background"></div>
 
 	<form
 			on:submit|preventDefault={handleSubmit}
-			on:invalid={validateLoginForm}
-			on:changed={validateLoginForm}
-			on:input={validateLoginForm}
+			on:invalid={validateSignForm}
+			on:changed={validateSignForm}
+			on:input={validateSignForm}
 	>
 
   <div class="modal-card">
-		{#if loginError}
-		<div id="loginError" class="notification is-danger">
-			<button class="delete" on:click={noLoginError}></button>
-			No se pudo iniciar sesión. <strong>Usuario y Clave errados.</strong>
+		{#if signError}
+		<div id="signError" class="notification is-danger">
+			<button class="delete" on:click={noSignupError}></button>
+			Could not sign up the user.
 		</div>
 		{/if}
 
-    <header class="modal-card-head has-background-info">
+    <header class="modal-card-head has-background-primary">
 			<span class="icon is-left">
-				<i class="fas fa-user-shield fa-2x has-text-light"></i>
+				<i class="fas fa-user-plus fa-2x has-text-light"></i>
 			</span>
-      <p class="modal-card-title has-text-centered has-text-light">Login Screen</p>
-      <button class="delete" on:click={hideLogin} aria-label="close"></button>
+      <p class="modal-card-title has-text-centered has-text-light">Sign Up Screen</p>
+      <button class="delete" on:click={hideSignup} aria-label="close"></button>
     </header>
 
     <section class="modal-card-body">
@@ -99,13 +99,13 @@
 				    <span class="icon is-small is-left">
 				      <i class="fas fa-user"></i>
 				    </span>
-						{#if !user.loggedIn}
+						{#if !user.signedUp}
 				    <span class="icon is-small is-right">
 				      <i class="fas fa-check"></i>
 				    </span>
 						{/if}
 				  </div>
-					{#if user.loggedIn}
+					{#if user.signedUp}
 				  	<p class="help is-danger">This user is invalid</p>
 					{/if}
 
@@ -125,7 +125,7 @@
 
     <footer class="modal-card-foot">
       <input type="submit" class="button is-success" value="Submit">
-      <input class="button" on:click={hideLogin} value="Cancel">
+      <input class="button" on:click={hideSignup} value="Cancel">
     </footer>
 
   </div>

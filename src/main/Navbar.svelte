@@ -2,11 +2,17 @@
 	import { state } from '../store/states.js';
 	import { createEventDispatcher } from 'svelte';
 	import Login from './Login.svelte';
+	import Signup from './Signup.svelte';
 
 	let loginClasses = 'modal';
+	let signClasses = 'modal';
 
 	function showLogin(event) {
 		loginClasses = 'modal is-active';
+	}
+
+	function showSignup(event) {
+		signupClasses = 'modal is-active';
 	}
 
 	function setHome(event) {
@@ -20,6 +26,13 @@
 		state.update(n => [
 				{ id: 0, text: 'Home' },
 				{ id: 1, text: 'Documentation' },
+				]
+		 );
+	}
+
+	function setCollapsed(event) {
+		state.update(n => [
+				{ id: 0, text: 'Home' }
 				]
 		 );
 	}
@@ -71,7 +84,7 @@
 			class="navbar-burger burger"
 			aria-label="menu" aria-expanded="false"
 			data-target="navbarBasicExample"
-			on:click="{{showLogin}}"
+			on:click={setCollapsed}
 			>
 			<span></span>
 			<span></span>
@@ -121,7 +134,7 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-            <strong class="button is-primary" >Sign up</strong>
+						<Signup signClasses/>
 						<Login loginClasses/>
         </div>
       </div>

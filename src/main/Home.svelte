@@ -17,8 +17,3 @@
 		</button>
 	</div>
 </div>
-
-<form on:submit|preventDefault={handleSubmit}>
-  <input type="text" placeholder="Name" />
-  <button>submit</button>
-</form>
