@@ -1,14 +1,12 @@
 <script>
 	import { state } from '../store/states.js';
 	import { createEventDispatcher } from 'svelte';
-
 	import Login from './Login.svelte';
 
-	let isLoginVisible = false;
-	$: loginClasses = (isLoginVisible ? 'modal is-active' : 'modal');
+	let loginClasses = 'modal';
 
-	function toggleLoginVisible() {
-		isLoginVisible = !isLoginVisible;
+	function showLogin(event) {
+		loginClasses = 'modal is-active';
 	}
 
 	function setHome(event) {
@@ -73,7 +71,7 @@
 			class="navbar-burger burger"
 			aria-label="menu" aria-expanded="false"
 			data-target="navbarBasicExample"
-			on:click={toggleLoginVisible}
+			on:click="{{showLogin}}"
 			>
 			<span></span>
 			<span></span>
@@ -124,31 +122,9 @@
       <div class="navbar-item">
         <div class="buttons">
             <strong class="button is-primary" >Sign up</strong>
-            <strong class="button is-primary"
-							on:click={toggleLoginVisible}>Log in</strong>
+						<Login loginClasses/>
         </div>
       </div>
     </div>
   </div>
 </nav>
-
-<div class="{loginClasses}">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
-      <button class="delete" on:click={toggleLoginVisible} aria-label="close"></button>
-    </header>
-
-    <section class="modal-card-body">
-      <!-- Content ... -->
-			<Login/>
-
-		</section>
-
-    <footer class="modal-card-foot">
-      <button class="button is-success">Save changes</button>
-      <button class="button" on:click={toggleLoginVisible}>Cancel</button>
-    </footer>
-  </div>
-</div>
