@@ -32,7 +32,7 @@
 
 	function setCollapsed(event) {
 		state.update(n => [
-				{ id: 0, text: 'Home' }
+				{ id: 0, text: 'Collapsed' }
 				]
 		 );
 	}
